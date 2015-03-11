@@ -1,0 +1,55 @@
+
+class User
+class DataBase
+class NaturalLang
+class ConceptStatement
+class DataDictionary
+class ClassModArt
+class DomainClassMod
+class Class
+class Association
+class UseCaseDiagram
+class ClassOp
+class UseCaseScen
+
+User -up- ConceptStatement
+User <|-down-SoftwareEngineer
+User <|-down- Client
+User -up- DataDictionary
+
+
+DataBase -down- UseCaseDiagramArt
+DataBase -down- DataDictionary
+DataBase -down- ClassModArt
+DataBase -down- NaturalLang
+
+NaturalLang -down- ConceptStatement
+NaturalLang -right- ClassModArt
+
+DataDictionary *-up- Class
+
+ClassModArt --* DomainClassMod
+
+Class -|> ClassModArt
+Association -|> ClassModArt
+
+
+
+ClassOp --o  Class
+
+
+
+UseCaseDiagram o-- Actor
+UseCaseDiagram o-- UseCase
+UseCaseDiagram o-- SystemBound
+UseCaseDiagramArt <|-up- Actor
+UseCaseDiagramArt <|-up- UseCase
+UseCaseDiagramArt <|-up- SystemBound
+UseCaseDiagramArt - User
+System - UseCaseDiagramArt
+System - Sequence
+Sequence - User
+Sequence - UseCaseScen
+UseCaseScen -up-* UseCase
+
+
