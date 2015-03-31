@@ -10,7 +10,6 @@ class "UseCase" as uc
 class "SystemBoundary" as sb
 class "UseCaseDiagram" as ucd
 class "UseCaseDiagramArtifact" as ucda
-class "ClassOperation" as co
 class "UseCaseScenario" as ucs
 
 class "SystemSequenceDiagram" as ssd
@@ -21,37 +20,32 @@ class "Client" as cl
 
 class "Actor" as act
 
-u -up- cs
+u "*" -up- "1" cs
 u <|-down- se
 u <|-down- cl
 
-db -down- ucda
-db -down- cma
-db -down- lp
+db "1" -down- "*" ucda
+db "1" -down- "*" cma
+db "1" -down- "1" lp
 
-lp -down- cs
-lp -right- cma
+lp "1" -down- "1" cs
+lp "1" -right- "*" cma
 
-cma --* dcm
+cma "*" --* "1" dcm
 
 c -|> cma
 a -|> cma
 
 
-
-co --o  c
-
-
-
-ucd o-- act
-ucd o-- uc
-ucd o-- sb
+ucd "1" o-- "*" act
+ucd "1" o-- "*" uc
+ucd "1" o-- "1" sb
 ucda <|-up- act
 ucda <|-up- uc
 ucda <|-up- sb
-ucda - u
-s - ucda
-s - ssd
-ssd - u
-ssd - ucs
-ucs -up-* uc
+ucda "*" - "1" u
+s "1" - "*" ucda
+s "1" - "*" ssd
+ssd "1" - "1" u
+ssd "1" - "1" ucs
+ucs "1" -up-* "1" uc
