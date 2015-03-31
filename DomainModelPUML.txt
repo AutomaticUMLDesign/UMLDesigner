@@ -1,55 +1,57 @@
+class "User" as u
+class "Database" as db
+class "LanguageProcessor" as lp
+class "ConceptStatement" as cs
+class "ClassModelArtifact" as cma
+class "DomainClassModel" as dcm
+class "Class" as c
+class "Association" as a
+class "UseCase" as uc
+class "SystemBoundary" as sb
+class "UseCaseDiagram" as ucd
+class "UseCaseDiagramArtifact" as ucda
+class "ClassOperation" as co
+class "UseCaseScenario" as ucs
 
-class User
-class DataBase
-class NaturalLang
-class ConceptStatement
-class DataDictionary
-class ClassModArt
-class DomainClassMod
-class Class
-class Association
-class UseCaseDiagram
-class ClassOp
-class UseCaseScen
+class "SystemSequenceDiagram" as ssd
+class "System" as s
 
-User -up- ConceptStatement
-User <|-down-SoftwareEngineer
-User <|-down- Client
-User -up- DataDictionary
+class "SoftwareEngineer" as se
+class "Client" as cl
 
+class "Actor" as act
 
-DataBase -down- UseCaseDiagramArt
-DataBase -down- DataDictionary
-DataBase -down- ClassModArt
-DataBase -down- NaturalLang
+u -up- cs
+u <|-down- se
+u <|-down- cl
 
-NaturalLang -down- ConceptStatement
-NaturalLang -right- ClassModArt
+db -down- ucda
+db -down- cma
+db -down- lp
 
-DataDictionary *-up- Class
+lp -down- cs
+lp -right- cma
 
-ClassModArt --* DomainClassMod
+cma --* dcm
 
-Class -|> ClassModArt
-Association -|> ClassModArt
-
-
-
-ClassOp --o  Class
-
-
-
-UseCaseDiagram o-- Actor
-UseCaseDiagram o-- UseCase
-UseCaseDiagram o-- SystemBound
-UseCaseDiagramArt <|-up- Actor
-UseCaseDiagramArt <|-up- UseCase
-UseCaseDiagramArt <|-up- SystemBound
-UseCaseDiagramArt - User
-System - UseCaseDiagramArt
-System - Sequence
-Sequence - User
-Sequence - UseCaseScen
-UseCaseScen -up-* UseCase
+c -|> cma
+a -|> cma
 
 
+
+co --o  c
+
+
+
+ucd o-- act
+ucd o-- uc
+ucd o-- sb
+ucda <|-up- act
+ucda <|-up- uc
+ucda <|-up- sb
+ucda - u
+s - ucda
+s - ssd
+ssd - u
+ssd - ucs
+ucs -up-* uc
