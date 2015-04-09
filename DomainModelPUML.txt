@@ -1,5 +1,4 @@
 class "User" as u
-class "Database" as db
 class "LanguageProcessor" as lp
 class "ConceptStatement" as cs
 class "ClassModelArtifact" as cma
@@ -11,9 +10,9 @@ class "SystemBoundary" as sb
 class "UseCaseDiagram" as ucd
 class "UseCaseDiagramArtifact" as ucda
 class "UseCaseScenario" as ucs
+class "Attribute" as att
 
 class "SystemSequenceDiagram" as ssd
-class "System" as s
 
 class "SoftwareEngineer" as se
 class "Client" as cl
@@ -24,9 +23,7 @@ u "*" -up- "1" cs
 u <|-down- se
 u <|-down- cl
 
-db "1" -down- "*" ucda
-db "1" -down- "*" cma
-db "1" -down- "1" lp
+
 
 lp "1" -down- "1" cs
 lp "1" -right- "*" cma
@@ -34,8 +31,10 @@ lp "1" -right- "*" cma
 cma "*" --* "1" dcm
 
 c -|> cma
+c o-- att
 a -|> cma
 
+cs "1"- "1" dcm
 
 ucd "1" o-- "*" act
 ucd "1" o-- "*" uc
@@ -44,8 +43,6 @@ ucda <|-up- act
 ucda <|-up- uc
 ucda <|-up- sb
 ucda "*" - "1" u
-s "1" - "*" ucda
-s "1" - "*" ssd
 ssd "1" - "1" u
 ssd "1" - "1" ucs
 ucs "1" -up-* "1" uc
